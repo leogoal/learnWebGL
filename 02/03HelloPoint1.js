@@ -37,7 +37,8 @@ function main() {
     /**
      * gd.drawArrays(mode, first, count)
      * 可以用来绘制各种图形
-     * 调用该方法时，顶点着色器将被执行 count 次，每次处理1个顶点
+     * 调用该方法时，顶点着色器将被执行 count 次，每次处理1个顶点。
+     * 在顶点着色器执行的时候，将调用并执行内部的main()函数；一旦顶点着色器执行完，片元着色器就会开始执行并调用mian()函数
      */
     gl.drawArrays(gl.POINTS, 0, 1);
 }
