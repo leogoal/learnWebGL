@@ -1,6 +1,7 @@
 /**
  * 使用canvas绘制2d图形
  */
+
 function main() {
     const canvas = document.getElementById('example');
     if(!canvas) {

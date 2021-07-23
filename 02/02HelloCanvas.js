@@ -1,6 +1,7 @@
 /**
  * 最简单的WebGL程序，使用背景色清空<canvas>元素的绘图区
  */
+
 function main() {
     var canvas = document.getElementById('example');
 
