@@ -4,7 +4,7 @@ var VSHADER_SOURCE =
  * 使用齐次坐标表示顶点坐标
  */
 'void main() {\n' +
-'   gl_Position = vec4(0.0, 0.0, 0.0, 1.0);\n' +    //设置坐标
+'   gl_Position = vec4(1, 0.0, 0.0, 1.0);\n' +    //设置坐标
 '   gl_PointSize = 10.0;\n' +                       //设置尺寸
 '}\n';
 
