@@ -18,7 +18,7 @@ function main() {
      * 一旦指定了背景色之后，背景色就会驻存在 WebGL 系统中，在下次调用 gl.clearColor 之前不会改变
      * 也就是，如果背景色不变，该方法调用一次即可
      */
-    gl.clearColor(0.0, 0.0, 0.0, 1.0);
+    gl.clearColor(0.0, 0.0, 1.0, 1.0);
 
     //清空<canvas>
     /**
