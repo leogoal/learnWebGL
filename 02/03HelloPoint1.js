@@ -1,8 +1,8 @@
-var VSHADER_SOURCE = 
 /**
  * gl_Position内置变量必须被赋值，否则着色器无法正常工作
  * 使用齐次坐标表示顶点坐标
  */
+var VSHADER_SOURCE = 
 'void main() {\n' +
 '   gl_Position = vec4(1, 0.0, 0.0, 1.0);\n' +    //设置坐标
 '   gl_PointSize = 10.0;\n' +                       //设置尺寸

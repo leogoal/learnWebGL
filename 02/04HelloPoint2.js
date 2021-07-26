@@ -1,8 +1,8 @@
-var VSHADER_SOURCE = 
 /**
  * attribute：存储限定符
  * attribute变量必须声明成全局变量，数据将从着色器外传递给该变量
  */
+var VSHADER_SOURCE = 
 'attribute vec4 a_Position;\n' +
 'void main() {\n' +
 '   gl_Position = a_Position;\n' +
