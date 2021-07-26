@@ -6,4 +6,3 @@
 ### Chapter 2 - [WebGL入门](./02/README.md)
 
 ### Chapter 3 - [绘制和变换三角形](./03/README.md)
-)
