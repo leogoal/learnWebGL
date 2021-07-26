@@ -8,3 +8,17 @@
 
 *4.利用矩阵简化变换
 
+**缓冲区对象**
+>WebGL提供的一种很方便的机制，可以一次性地向着色器传入多个顶点的数据
+>缓冲区对象是WebGL系统中的一块内存区域，可以一次性地向缓冲区对象中填充大量地顶点数据，然后将这些数据保存在其中，供顶点着色器使用
+
+
+
+**总结**
+
+*1.WebGL 核心方法
+>gl.createBuffer()
+>gl.bindBuffer()
+>gl.bufferData()
+>gl.vertexAttribPointer()
+>gl.enableVertexAttribArray()
