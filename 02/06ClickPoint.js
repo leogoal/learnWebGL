@@ -48,6 +48,10 @@ function click(e, gl, a_Position) {
      */
 
     gl.clear(gl.COLOR_BUFFER_BIT);
+    /**
+     * 如果注释掉上述代码（gl.clear(...)），颜色缓冲区就会被WebGl重置为默认的颜色
+     */
+
     var len = g_Points.length;
     for (var i = 0; i < len; i += 2) {
         gl.vertexAttrib2f(a_Position, g_Points[i], g_Points[i + 1]);
