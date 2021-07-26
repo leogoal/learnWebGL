@@ -34,4 +34,21 @@
 >   只有顶点着色器才能使用它
 
 *uniform 变量
->   传输那些对于所有顶点都相同（或与顶点无关）的数据
+>   向顶点着色器或片元着色器传输“一致的（不变的）数据”
+
+*只能指定 float 类型的attribute变量；却可以指定任意类型的uniform变量
+
+**总结**
+1.一些WebGL的核心函数
+> gl.clearColor()
+> gl.clear()
+> gl.drawArrays()
+
+>gl.getAttribLocation()
+>gl.vertexAttrib[1234][fv]()
+
+>gl.getUniformLocation()
+>gl.uniform[1234]f();
+
+2.js如何将数据传递给着色器
+3.顶点着色器进行的是逐顶点的操作，片元着色器进行的是逐片元的操作

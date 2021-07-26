@@ -5,6 +5,9 @@ var VSHADER_SOURCE =
 '   gl_PointSize = 5.0;\n' +
 '}\n';
 
+/**
+ * 使用了精度限定词
+ */
 var FSHADER_SOURCE = 
 'precision mediump float;\n' +
 'uniform vec4 u_FragColor;\n' +
@@ -21,7 +24,14 @@ function main() {
         return;
     }
 
+    /**
+     * 不存在，返回-1
+     */
     var a_Position = gl.getAttribLocation(gl.program, 'a_Position');
+
+    /**
+     * 不存在，返回 null
+     */
     var u_FragColor = gl.getUniformLocation(gl.program, 'u_FragColor');
 
     canvas.onmousedown = function(e) {
