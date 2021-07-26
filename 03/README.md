@@ -50,13 +50,36 @@
 
 >        gl.DYNAMIC_DRAW：会向缓冲区对象中多次写入数据，并绘制很多次
 
+>4）将绑定到 gl.ARRAY_BUFFER的缓冲区对象分配给由 location 指定的 attribute 变量
+
+>   gl.vertexAttribPointer(location, size, type, normalized, stride, offset)函数规范
+
+>   location：待分配给 attribute 变量的存储地址
+
+>   size：指定缓冲区中每个顶点的分量个数（1~4）；若 size 比 attribute 变量需要的分量数小，缺失部分将按照与 gl.vertexAttrib[1234]f 相同的规则补全
+
+>   type：指定数据格式，包括（gl.UNSIGNED_BYTE gl.SHORT gl.UNSIGNED_SHORT gl.INT gl.UNSIGNED_INT gl.FLOAT）
+
+>   normalize：true / false (表明是否将非浮点型的数据归一化到 [0, 1]或[-1, 1]区间)
+
+>   stride：指定相邻2个顶点间的字节数，默认为0
+
+>   offset：指定缓冲区对象中的偏移量，如果从起始位置开始的，offset设为0
+
+>5）开启 attribute 变量
+
+>   gl.enableVertexAttribArray(location)
+
+>   可以使用 gl.disableVertexAttribArray(location)来关闭分配
+
+
 
 **类型化数组**
 
 *1.包括 
 
      数组类型         每个元素所占字节数            描述
-> Int8Array                   1                           8位整型数
+> Int8Array             1                           8位整型数
 
 > UInt8Array            1                           8位无符号整型数
 
@@ -72,4 +95,17 @@
 
 > Float64Array          8                           双精度64位浮点数
 
+*2.类型化数据的方法 属性和常量
+
+>get(index)
+
+>set(index, value)
+
+>set(array, offset)：从第 offset 个元素开始，将数组 array中的值填充进去
+
+>length
+
+>BYTES_PER_ELEMENT：数组中每个元素所占的字节数
+
+*3.使用 new 运算符来创建
                  
