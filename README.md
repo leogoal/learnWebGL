@@ -8,3 +8,5 @@
 ### Chapter 3 - [绘制和变换三角形](./03/README.md)
 
 ### Chapter 4 - [高级变换与动画基础](.04/README.md)
+
+### Chapter 5 - [颜色与纹理](.05/README.md)
