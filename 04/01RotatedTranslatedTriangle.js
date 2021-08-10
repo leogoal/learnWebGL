@@ -26,7 +26,7 @@ function main() {
         console.log('初始化顶点数据失败');
         return;
     }
-
+ 
     var modelMatrix = new Matrix4();
     modelMatrix.setRotate(ANGLE, 0, 0, 1);
     modelMatrix.translate(TX, 0, 0);
