@@ -9,6 +9,7 @@ var VSHADER_SOURCE =
 '}\n';
 
 var FSHADER_SOURCE = 
+'precision mediump float;' +
 'varying vec4 v_Color;\n' +
 'void main() {\n' +
 '   gl_FragColor = v_Color;\n' +
