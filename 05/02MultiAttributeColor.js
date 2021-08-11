@@ -38,9 +38,9 @@ function main() {
 
 function initVertexBuffers(gl) {
     var vertices = new Float32Array([
-        0.0, 0.5, 1.0, 0.0, 0.0, 1.0,
-        -0.5, -0.5, 0.0, 1.0, 0.0, 1.0,
-        0.5, -0.5, 0.0, 0.0, 1.0, 1.0
+        0.0, 0.5, 1.0, 0.0, 0.0,
+        -0.5, -0.5, 0.0, 1.0, 0.0,
+        0.5, -0.5, 0.0, 0.0, 1.0
     ])
 
     var n = 3;
@@ -54,11 +54,11 @@ function initVertexBuffers(gl) {
 
     var FSIZE = vertices.BYTES_PER_ELEMENT;
     var a_Position = gl.getAttribLocation(gl.program, 'a_Position');
-    gl.vertexAttribPointer(a_Position, 2, gl.FLOAT, false, FSIZE * 6, 0);
+    gl.vertexAttribPointer(a_Position, 2, gl.FLOAT, false, FSIZE * 5, 0);
     gl.enableVertexAttribArray(a_Position);
 
     var a_Color = gl.getAttribLocation(gl.program, 'a_Color');
-    gl.vertexAttribPointer(a_Color, 4, gl.FLOAT, false, FSIZE * 6, FSIZE * 2);
+    gl.vertexAttribPointer(a_Color, 3, gl.FLOAT, false, FSIZE * 5, FSIZE * 2);
     gl.enableVertexAttribArray(a_Color);
 
     return n;
