@@ -95,12 +95,22 @@ function initTextures(gl, n) {
      */
     var u_Sampler = gl.getUniformLocation(gl.program, 'u_Sampler');
 
-    var image = new Image();
-    image.onload = function(e) {
+    loadImage('img/sky.jpg').then((image)=>{
         loadTexture(gl, n, texture, u_Sampler, image);
-    }
-    image.src = 'img/logo.png';
-    return true;
+    })
+}
+
+function loadImage(url) {
+    return new Promise(function(resolve, reject) {
+        var image = new Image();
+        image.onload = () => {
+            resolve(image);
+        };
+        image.onerror = (e) => {
+            reject(e);
+        }
+        image.src = url;
+    })
 }
 
 function loadTexture(gl, n, texture, u_Sampler, image) {
