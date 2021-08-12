@@ -12,13 +12,27 @@ var VSHADER_SOURCE =
 
 /**
  * 片元着色器根据片元的纹理坐标，从纹理图像中抽取出纹素颜色，并赋给当前片元
+ * texture2D(sampler2D sampler, vec2 coord) （从 sampler 指定的纹理上获取 coord 指定的纹理坐标处的像素颜色）
+ * 参数解释：
+ *          sampler：指定纹理单元编号
+ *          coord：指定纹理坐标
+ * 返回值：纹理坐标处像素的颜色值，其格式由 gl.texImage2D()的 internalformat 参数决定
+ * 
+ *          internalformat             返回值
+ *          gl.RGB                      (R,G,B,1.0)
+ *          gl.RGBA                     (R,G,B,A)
+ *          gl.ALPHA                    (0.0, 0.0, 0.0, A)
+ *          gl.LUMINANCE                (L, L, L, 1.0)
+ *          gl.LUMINANCE_ALPHA          (L, L, L, A)
+ * 
+ * 纹理放大和缩小方法的参数将决定 WebGL 系统将以何种方式内插出片元
  */
 var FSHADER_SOURCE =
 'precision mediump float;\n' +
 'uniform sampler2D u_Sampler;\n' +
 'varying vec2 v_TexCoord;\n' +
 'void main() {\n' +
-'   gl_FragColor = '
+'   gl_FragColor = texture2D(u_Sampler, v_TexCoord);\n' +
 '}\n';
 
 function main() {
@@ -28,6 +42,14 @@ function main() {
         console.log('初始化着色器失败');
         return;
     }
+    
+    var n = initVertexBuffers(gl);
+    if(n < 0) {
+        console.log('初始化顶点数据失败');
+        return;
+    }
+
+    initTextures(gl, n);
 }
 
 function initVertexBuffers(gl) {
@@ -59,7 +81,7 @@ function initVertexBuffers(gl) {
     return n;
 }
 
-function initTextures(gl, ) {
+function initTextures(gl, n) {
     /**
      * 创建纹理对象
      * 纹理对象用来管理 WebGL 系统中的纹理
@@ -74,11 +96,10 @@ function initTextures(gl, ) {
     var u_Sampler = gl.getUniformLocation(gl.program, 'u_Sampler');
 
     var image = new Image();
-    image.onload = function() {
+    image.onload = function(e) {
         loadTexture(gl, n, texture, u_Sampler, image);
     }
     image.src = 'img/logo.png';
-
     return true;
 }
 
@@ -155,5 +176,7 @@ function loadTexture(gl, n, texture, u_Sampler, image) {
     //将纹理单元传递给片元着色器 
     gl.uniform1i(u_Sampler, 0);
 
+    gl.clearColor(0.0, 0.0, 0.0, 1.0);
+    gl.clear(gl.COLOR_BUFFER_BIT);
     gl.drawArrays(gl.TRIANGLE_STRIP, 0, n);
 }
