@@ -1,9 +1,11 @@
 /**
- * 将纹理图像贴在二维图形上
+ * 绘制纹理
  */
 
-//顶点着色器接收顶点的纹理坐标，光栅化后传递给片元着色器
-var VSHADER_SOURCE = 
+/**
+ * 顶点着色器的纹理坐标，光栅化后传入片元着色器
+ */
+var VSHADER_SOURCE =
 'attribute vec4 a_Position;\n' +
 'attribute vec2 a_TexCoord;\n' +
 'varying vec2 v_TexCoord;\n' +
@@ -13,15 +15,16 @@ var VSHADER_SOURCE =
 '}\n';
 
 
-//片元着色器根据当前片元的纹理坐标，从纹理图像中抽取纹素的颜色，并赋值给当前片元
-var FSHADER_SOURCE = 
+/**
+ * 根据纹理坐标获取纹理图像纹素的颜色，赋值给当前片元
+ */
+var FSHADER_SOURCE =
 'precision mediump float;\n' +
 'uniform sampler2D u_Sampler;\n' +
 'varying vec2 v_TexCoord;\n' +
 'void main() {\n' +
 '   gl_FragColor = texture2D(u_Sampler, v_TexCoord);\n' +
 '}\n';
-
 
 function main() {
     var canvas = document.getElementById('example');
@@ -34,20 +37,20 @@ function main() {
 
     var n = initVertexBuffers(gl);
     if(n < 0) {
-        console.log('初始化顶点数据失败');
+        console.log('...')
         return;
     }
 
-    initTextures(gl, n)
+    initTextures(gl, n);
 }
 
 function initVertexBuffers(gl) {
     var vertices = new Float32Array([
-        -0.5, 0.5, 0.0, 1.0,
-        -0.5, -0.5, 0.0, 0.0,
-        0.5, 0.5, 1.0, 1.0,
-        0.5, -0.5, 1.0, 0.0
-    ])
+        -0.5, 0.5, -0.3, 1.7,
+        -0.5, -0.5, -0.3, -0.2,
+        0.5, 0.5, 1.7, 1.7,
+        0.5, -0.5, 1.7, -0.2
+    ]);
     var n = 4;
 
     var vertexBuffer = gl.createBuffer();
@@ -80,10 +83,10 @@ function initTextures(gl, n) {
 function loadImage(url) {
     return new Promise((resolve, reject)=>{
         var image = new Image();
-        image.onload = ()=>{
+        image.onload = () => {
             resolve(image);
         };
-        image.onerror = (e)=>{
+        image.onerror = (e) => {
             reject(e);
         };
         image.src = url;
@@ -91,20 +94,18 @@ function loadImage(url) {
 }
 
 function loadTexture(gl, n, image) {
-    /**
-     * 纹理对象
-     * 用来管理 WebGL 系统中的纹理
-     * 可以使用 gl.deleteTexture()来删除一个纹理对象
-     */
-    
+    //y轴反转
     gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, 1);
-
+    //激活纹理单元
     gl.activeTexture(gl.TEXTURE0);
-
+    //绑定纹理对象
     var texture = gl.createTexture();
     gl.bindTexture(gl.TEXTURE_2D, texture);
-
+    //配置纹理对象参数
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+
+    // gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+    // gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.MIRRORED_REPEAT);
 
     //将纹理图像分配给纹理对象
     gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGB, gl.RGB, gl.UNSIGNED_BYTE, image);
@@ -114,6 +115,7 @@ function loadTexture(gl, n, image) {
 
     gl.clearColor(0.0, 0.0, 0.0, 1.0);
     gl.clear(gl.COLOR_BUFFER_BIT);
+
     gl.drawArrays(gl.TRIANGLE_STRIP, 0, n);
-    console.log('hhh')
+    console.log(1234);
 }
