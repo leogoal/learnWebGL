@@ -10,3 +10,5 @@
 ### Chapter 4 - [高级变换与动画基础](.04/README.md)
 
 ### Chapter 5 - [颜色与纹理](.05/README.md)
+
+### Chapter 6 - [ OpenGL ES着色器语言（GLSL ES）](.06/README.md)
